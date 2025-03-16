@@ -25,11 +25,17 @@ function M.create_fixedspace()
 	-- Check if the buffer already exists
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		local buf = vim.api.nvim_win_get_buf(win)
-		if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_name(buf) == opts.buf_name then
-			return buf
+		local bufname = vim.api.nvim_buf_get_name(buf)
+		if vim.api.nvim_buf_is_valid(buf) and bufname:find(opts.buf_name, 1, true) then
+			return buf -- ✅ Found a buffer that contains the name
 		end
 	end
 
+	-- check if buffer exist by name, if fixedspace is in any buf name
+	--	if vim.api.nvim_buf_get_name(0):find(opts.buf_name) then
+	--		return
+	--	end
+	--
 	-- Store current window to move cursor back later
 	local current_win = vim.api.nvim_get_current_win()
 
