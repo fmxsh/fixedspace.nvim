@@ -49,20 +49,20 @@ This goes into `.config/nvim/lua/custom/plugins/fixedspace.lua`, which is loaded
       end,
     })
     vim.api.nvim_create_autocmd('User', {
-      pattern = 'phxmanPostLoaded',
+      pattern = 'phxmPostLoaded',
       callback = function()
         require('fixedspace').enable()
       end,
     })
     vim.api.nvim_create_autocmd('User', {
-      pattern = 'phxmanPreSessionSave',
+      pattern = 'phxmPreSessionSave',
       callback = function()
         require('fixedspace').disable()
       end,
     })
 
     vim.api.nvim_create_autocmd('User', {
-      pattern = 'phxmanPostSessionSave',
+      pattern = 'phxmPostSessionSave',
       callback = function()
         require('fixedspace').enable()
       end,
